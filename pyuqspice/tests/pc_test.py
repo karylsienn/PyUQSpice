@@ -1,4 +1,4 @@
-import polynomial_chaos as pc
+from pystatemc.pcarchitects import PCArchitect 
 import unittest
 
 class TestPC(unittest.TestCase):
@@ -23,9 +23,7 @@ class TestPC(unittest.TestCase):
 
         N = 20
 
-        pcarchitect = pc.PCArchitect(variables_dict)
-        experimental_design = pcarchitect.get_experimental_design(N, dataframe_only=True)
-        print(experimental_design)
+        pcarchitect = PCArchitect(variables_dict)
         return True
 
     def test_dummy(self):

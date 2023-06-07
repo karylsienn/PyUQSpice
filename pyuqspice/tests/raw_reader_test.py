@@ -3,7 +3,7 @@ from logging import warning
 from select import select
 import unittest 
 import numpy as np
-import warnings, os
+import warnings, os, sys
 
 from sympy import N, interpolate
 from ltspicer.readers import RawReader
@@ -111,7 +111,7 @@ class HeaderParserTransientTests(unittest.TestCase):
     def __init__(self, methodName: str = ...) -> None:
         super().__init__(methodName)
         self.raw_reader = RawReader()
-        self.test_files_path = "test_files"
+        self.test_files_path = "pyuqspice/test_files"
         self.raw_reader.raw_path = os.path.join(self.test_files_path, "Transient", "simple_resistor_copy.raw")
         self.raw_reader._parse_header() 
 
@@ -157,7 +157,7 @@ class RawParserTransientTests(unittest.TestCase):
     def __init__(self, methodName: str = ...) -> None:
         super().__init__(methodName)
         self.raw_reader = RawReader()
-        self.test_files_path = "test_files"
+        self.test_files_path = "pyuqspice/test_files"
         self.raw_reader.raw_path = os.path.join(self.test_files_path, "Transient", "simple_resistor_copy.raw")
         self.raw_reader._parse_header() 
         self.raw_reader._parse_rawfile()
@@ -233,7 +233,7 @@ class RawParserTransientSteppedTests(unittest.TestCase):
     def __init__(self, methodName: str = ...) -> None:
         super().__init__(methodName)
         self.raw_reader = RawReader()
-        self.test_files_path = "test_files"
+        self.test_files_path = "pyuqspice/test_files"
         self.raw_reader.raw_path = os.path.join(self.test_files_path, "Transient", "simple_resistor_stepped_copy.raw") # 3 steps 1, 2, 5
         self.raw_reader._parse_header() 
         self.raw_reader._parse_rawfile()
@@ -269,8 +269,8 @@ class AnalysisTypeTests(unittest.TestCase):
 
     def __init__(self, methodName: str = ...) -> None:
         super().__init__(methodName)
-        self.ac_reader = RawReader("test_files/AC/simple_rlc_copy.raw")
-        self.tran_reader = RawReader("test_files/Transient/simple_resistor_stepped_copy.raw")
+        self.ac_reader = RawReader("pyuqspice/test_files/AC/simple_rlc_copy.raw")
+        self.tran_reader = RawReader("pyuqspice/test_files/Transient/simple_resistor_stepped_copy.raw")
     
     def test_ac_analysis_type(self):
         self.assertEqual(self.ac_reader.get_analysis_type(), 'ac')
@@ -288,8 +288,8 @@ class InterpolatedDataTests(unittest.TestCase):
 
     def __init__(self, methodName: str = ...) -> None:
         super().__init__(methodName)
-        self.tran_reader = RawReader("test_files/Transient/simple_resistor_stepped_copy.raw")
-        self.ac_reader =  RawReader("test_files/AC/simple_rlc_copy.raw")
+        self.tran_reader = RawReader("pyuqspice/test_files/Transient/simple_resistor_stepped_copy.raw")
+        self.ac_reader =  RawReader("pyuqspice/test_files/AC/simple_rlc_copy.raw")
     
     def test_defaults(self):
         x, d, s, _ = self.tran_reader._get_data_array(interpolated=True)
@@ -324,8 +324,8 @@ class PandasAndNumpyTests(unittest.TestCase):
 
     def __init__(self, methodName: str = ...) -> None:
         super().__init__(methodName)
-        self.tran_reader = RawReader("test_files/Transient/simple_resistor_stepped_copy.raw")
-        self.ac_reader = RawReader("test_files/AC/simple_rlc_copy.raw")
+        self.tran_reader = RawReader("pyuqspice/test_files/Transient/simple_resistor_stepped_copy.raw")
+        self.ac_reader = RawReader("pyuqspice/test_files/AC/simple_rlc_copy.raw")
     
     def test_pandas_transient_interpolated_df(self):
         df = self.tran_reader.get_pandas(steps=[1,2], columns=['I(R1)', 'V(n001)'],

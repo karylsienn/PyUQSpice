@@ -1,0 +1,6 @@
+* c:\Users\ezzkn\OneDrive - The University of Nottingham\Documents\SCENT\UQSpice\PyUQSpice\pyuqspice\test_files\Transient\simple_resistor_ver2.asc
+V1 N001 0 4
+R1 N001 0 1
+.tran 0 0.001
+.backanno
+.end
