@@ -5,7 +5,6 @@ import unittest
 import numpy as np
 import warnings, os, sys
 
-from sympy import N, interpolate
 from ltspicer.readers import RawReader
 
 class StepDictTests(unittest.TestCase):
