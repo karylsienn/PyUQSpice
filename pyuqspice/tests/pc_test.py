@@ -1,4 +1,4 @@
-from pystatemc.pcarchitects import PCArchitect 
+from pyuqspice.pystatemc.pcarchitects import PCArchitect 
 import unittest
 
 class TestPC(unittest.TestCase):

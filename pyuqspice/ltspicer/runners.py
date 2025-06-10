@@ -2,7 +2,7 @@ from posixpath import basename
 import sys
 import os
 import subprocess
-from ltspicer.pathfinder import LTPathFinder
+from .pathfinder import LTPathFinder
 
 
 class LTSpiceRunner:

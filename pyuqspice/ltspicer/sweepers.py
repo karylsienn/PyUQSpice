@@ -1,7 +1,7 @@
 import sys, os
 import warnings
-from ltspicer.pathfinder import LTPathFinder
-from ltspicer.readers import NetlistReader
+from .pathfinder import LTPathFinder
+from .readers import NetlistReader
 import re 
 import subprocess
 from random import random

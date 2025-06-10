@@ -1,5 +1,5 @@
 import unittest
-from ltspicer.sweepers import NetlistCreator
+from pyuqspice.ltspicer.sweepers import NetlistCreator
 
 class NetlistCreationTests(unittest.TestCase):
 

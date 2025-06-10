@@ -1,5 +1,5 @@
 import unittest
-from ltspicer.runners import LTSpiceRunner
+from pyuqspice.ltspicer.runners import LTSpiceRunner
 
 class RunTests(unittest.TestCase):
 

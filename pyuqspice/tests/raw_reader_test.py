@@ -5,7 +5,7 @@ import unittest
 import numpy as np
 import warnings, os, sys
 
-from ltspicer.readers import RawReader
+from pyuqspice.ltspicer.readers import RawReader
 
 class StepDictTests(unittest.TestCase):
 
