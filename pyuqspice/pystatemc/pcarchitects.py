@@ -14,7 +14,8 @@ class ExperimentalDesigner:
 
     def __init__(self, variables: dict):
         self.variables = {k: self._recognize_distributions(v) for k, v in variables.items()}
-        self.distribution = ot.ComposedDistribution([v for v in self.variables.values()])
+        distribution_class = getattr(ot, 'ComposedDistribution', None) or ot.JointDistribution
+        self.distribution = distribution_class([v for v in self.variables.values()])
         self.distribution.setDescription([k for k in self.variables.keys()])
         self.input_dimension = self.distribution.getDimension()
 
