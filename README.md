@@ -55,7 +55,7 @@ from pyuqspice.pystatemc.pcarchitects import PCArchitect
 
 # Read LTSpice raw files
 reader = RawReader("path/to/file.raw")
-data = reader.get_data()
+data = reader.get_pandas()
 
 # Run LTSpice simulations
 runner = LTSpiceRunner()

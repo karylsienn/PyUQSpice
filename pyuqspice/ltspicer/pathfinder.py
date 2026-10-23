@@ -16,7 +16,13 @@ class LTPathFinder:
             if sys.platform == 'darwin':
                 ltpath = "/Applications/LTspice.app/Contents/MacOS/LTspice"
             elif sys.platform == 'win32':
-                ltpath = "C:\\Program Files\\LTC\\LTspiceXVII\\XVIIx64.exe"
+                candidates = [
+                    "C:\\Program Files\\ADI\\LTspice\\LTspice.exe",
+                    os.path.join(os.path.expanduser('~'), "AppData", "Local", "Programs", "ADI", "LTspice",
+                                 "LTspice.exe"),
+                    "C:\\Program Files\\LTC\\LTspiceXVII\\XVIIx64.exe",
+                ]
+                ltpath = next((c for c in candidates if os.path.exists(c)), candidates[0])
             elif sys.platform == 'linux':
                 ltpath = os.path.join(os.path.expanduser('~'), '.wine', 'drive_c', 'Program Files', 'LTC',
                                       'LTspiceXVII', 'XVIIx64.exe')
@@ -37,7 +43,12 @@ class LTPathFinder:
                 _sym_folder = os.path.join(os.path.expanduser('~'),
                                            "Library", "Application Support", "LTspice", "lib", "sym")
             elif sys.platform == 'win32':
-                _sym_folder = "C:\\Program Files\\LTC\\LTspiceXVII\\lib\\sym"
+                candidates = [
+                    "C:\\Program Files\\ADI\\LTspice\\lib\\sym",
+                    os.path.join(os.path.expanduser('~'), "AppData", "Local", "LTspice", "lib", "sym"),
+                    "C:\\Program Files\\LTC\\LTspiceXVII\\lib\\sym",
+                ]
+                _sym_folder = next((c for c in candidates if os.path.isdir(c)), candidates[0])
             elif sys.platform == 'linux':
                 _sym_folder = os.path.join(os.path.expanduser('~'), 'Documents', 'LTspiceXVII', 'lib', 'sym')
             else:
