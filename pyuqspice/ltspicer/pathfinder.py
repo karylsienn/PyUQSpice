@@ -26,7 +26,7 @@ class LTPathFinder:
             elif sys.platform == 'linux':
                 ltpath = os.path.join(os.path.expanduser('~'), '.wine', 'drive_c', 'Program Files', 'LTC',
                                       'LTspiceXVII', 'XVIIx64.exe')
-                ltpath = re.sub(' ', '\ ', ltpath)
+                ltpath = re.sub(' ', r'\ ', ltpath)
             else:
                 raise NotImplementedError(LTPathFinder.not_implemented_string)
         if os.path.exists(ltpath) and os.access(ltpath, os.X_OK):  # Check if it is an executable.
